@@ -55,7 +55,7 @@
 			function initG()
 			{
 				removeGUI();
-				var tags=list.childNodes.item(0).value;
+				var tags=list.childNodes.item(0).childNodes.item(0).value;
 				alert(tags);
 				loadPage("https://gelbooru.com/index.php?page=post&s=list&tags="+tags+"&pid=0");
 				audio = document.createElement("AUDIO");
