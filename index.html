@@ -5,6 +5,8 @@
 			var vals;
 			var list;
 			var button;
+			var audio;
+			var perPage;
 			function addBox()
 			{
 				var el=document.createElement("li");
@@ -13,27 +15,37 @@
 				box.setAttribute("type","text");
 				el.appendChild(box);
 			}
-			
-			function reset()
+			function removeGUI()
 			{
 				var nodes=document.body.childNodes;
 				nodes.forEach(function(n,i,l){document.body.removeChild(n)});
-			
+			}
+			function initGUI()
+			{
 				list=document.createElement("ol");
-				document.body.appendChild(list);
-				
-				
-				
+				document.body.appendChild(list);	
 				
 				addBox();
 				var box=document.createElement("input");
 				box.setAttribute("type","button");
-				box.setAttribute("onclick","addBox()");
+				<--box.setAttribute("onclick","addBox()");-->
 				list.childNodes.item(0).appendChild(box);
+			}
+			
+			function reset()
+			{
+				removeGUI();
+				initGUI();		
 				
-				
-				
-				
+			}
+			function initG()
+			{
+				removeGUI();
+				audio = document.createElement("AUDIO");
+				var url1="https://freesound.org/data/previews/26/26777_128404-lq.mp3";
+				audio.setAttribute("src",url1);
+				document.body.appendChild(audio);
+				perPage
 			}
 			
 		</script>
