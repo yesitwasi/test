@@ -6,7 +6,7 @@
 			var list;
 			var button;
 			var audio;
-			var perPage;
+			var perPage,total
 			function addBox()
 			{
 				var el=document.createElement("li");
@@ -38,6 +38,17 @@
 				initGUI();		
 				
 			}
+			var dt;
+			function loadPage(url)
+			{
+				
+				 $.ajax({ url: 'https://cors-anywhere.herokuapp.com/'+url, success: function(data) {
+	      	  	  
+	  			dom=new DOMParser();
+	  			dt=dom.parseFromString(data,"text/html");
+					 } });
+				
+			}
 			function initG()
 			{
 				removeGUI();
@@ -45,7 +56,8 @@
 				var url1="https://freesound.org/data/previews/26/26777_128404-lq.mp3";
 				audio.setAttribute("src",url1);
 				document.body.appendChild(audio);
-				perPage
+				perPage=dt.getElementsByClassName("thumbnail-container").item(0).childNodes.length;
+				var pages=
 			}
 			
 		</script>
@@ -53,15 +65,8 @@
 
 <body>
 	aylmaoooo
-  <script>
+   <script>
        reset();
-  $.ajax({ url: 'https://cors-anywhere.herokuapp.com/https://example.com/', success: function(data) {
-	      	  	  
-	  dom=new DOMParser();
-	  dt=dom.parseFromString(data,"text/html");
-	  
-  } });
-   
 
       
        
