@@ -6,9 +6,11 @@
 <body>
   <script>
        
-  $.ajax({ url: 'https://cors-anywhere.herokuapp.com/https://example.com/', success: function(data) { alert(data); } });
-   var textnode = document.createTextNode("lil");
-    document.body.appendChild(textnode);
+  $.ajax({ url: 'https://cors-anywhere.herokuapp.com/https://example.com/', success: function(data) {
+	  var textnode = document.createTextNode(data);
+    document.body.appendChild(textnode); 
+  } });
+   
 
       
        
