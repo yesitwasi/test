@@ -42,18 +42,19 @@
 			function loadPage(url)
 			{
 				var f='https://cors-anywhere.herokuapp.com/'+url;
-				alert(f);
+				
 				 $.ajax({ url: f, success: function(data) {
 	      	  	  
-	  			dom=new DOMParser();
+	  			var dom=new DOMParser();
 	  			dt=dom.parseFromString(data,"text/html");
+					 alert(f);
 					 } });
 				
 			}
 			function initG()
 			{
 				removeGUI();
-				loadPage("https://gelbooru.com/index.php?page=post&s=list&tags="+list.childNodes.item(0).getAttribute("value")+"&pid=0");
+				loadPage("https://gelbooru.com/index.php?page=post&s=list&tags="+list.childNodes.item(0).value+"&pid=0");
 				audio = document.createElement("AUDIO");
 				var url1="https://freesound.org/data/previews/26/26777_128404-lq.mp3";
 				audio.setAttribute("src",url1);
