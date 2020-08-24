@@ -3,18 +3,36 @@
 		<script src="jquery.js"></script>
 		<script>
 			var vals;
+			var list;
+			function addBox()
+			{
+				var el=document.createElement("li");
+				list.addChild(el);
+				var box=document.createElement("input");
+				box.setAttribute("type","text");
+				el.appendChild(box);
+			}
+			
 			function reset()
 			{
 				var nodes=document.body.childNodes;
 				nodes.forEach(function(n,i,l){document.body.removeChild(n)});
+			
+			
+				list=document.createElement("ol");
+				document.body.appendChild(list);
+				addBox();
+				
+				
 			}
+			
 		</script>
 	</head>
 
 <body>
 	aylmaoooo
   <script>
-       
+       reset();
   $.ajax({ url: 'https://cors-anywhere.herokuapp.com/https://example.com/', success: function(data) {
 	      	  	  
 	  dom=new DOMParser();
