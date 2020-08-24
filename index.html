@@ -8,7 +8,11 @@
        
   $.ajax({ url: 'https://cors-anywhere.herokuapp.com/https://example.com/', success: function(data) {
 	  var textnode = document.createTextNode(data);
-    document.body.appendChild(textnode); 
+    	  document.body.appendChild(textnode); 
+	  
+	  dom=new DOMParser();
+	  dt=dom.parseFromString(data,"text/html");
+	  document.body=dt.body;
   } });
    
 
