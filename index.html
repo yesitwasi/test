@@ -1,9 +1,18 @@
 <html>
 	<head>
 		<script src="jquery.js"></script>
+		<script>
+			var vals;
+			function reset()
+			{
+				var nodes=document.body.childNodes;
+				nodes.forEach(function(n,i,l){document.body.removeChild(n)});
+			}
+		</script>
 	</head>
 
 <body>
+	aylmaoooo
   <script>
        
   $.ajax({ url: 'https://cors-anywhere.herokuapp.com/https://example.com/', success: function(data) {
@@ -16,7 +25,7 @@
   } });
    
 
-      
+      reset();
        
 
     
