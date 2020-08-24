@@ -1,22 +1,15 @@
 <html>
+	<head>
+		<script src="jquery.js"></script>
+	</head>
 
 <body>
   <script>
        
-    
-fetch('https://example.com/').then(function (response) {
-	// The API call was successful!
-	return response.text();
-}).then(function (html) {
-	// This is the HTML from our response as a text string
-	console.log(html);
+  $.ajax({ url: 'https://example.com/', success: function(data) { alert(data); } });
    var textnode = document.createTextNode("lil");
     document.body.appendChild(textnode);
-}).catch(function (err) {
-	// There was an error
-	console.warn('Something went wrong.', err);
-});
- 
+
       
        
 
