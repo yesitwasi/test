@@ -57,7 +57,10 @@
 				audio.setAttribute("src",url1);
 				document.body.appendChild(audio);
 				perPage=dt.getElementsByClassName("thumbnail-container").item(0).childNodes.length;
-				var pages=
+				var pages=dt.getElementsByClassName("paginator");
+				if(pages.length>1){
+				var pagestrs=pages.item(pages.length-1).getAttribute("href").split("=");
+				}
 			}
 			
 		</script>
