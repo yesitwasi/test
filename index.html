@@ -48,7 +48,8 @@
 	  			var dom=new DOMParser();
 	  			dt=dom.parseFromString(data,"text/html");
 					 
-					 }, error:function(){alert("ERROR: "+f)}});
+					 }});
+				if(dt==null)alert("ERROR: "+f);
 				
 			}
 			function initG()
