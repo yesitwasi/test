@@ -41,8 +41,9 @@
 			var dt;
 			function loadPage(url)
 			{
-				
-				 $.ajax({ url: 'https://cors-anywhere.herokuapp.com/'+url, success: function(data) {
+				string f='https://cors-anywhere.herokuapp.com/'+url;
+				alert(f);
+				 $.ajax({ url: f, success: function(data) {
 	      	  	  
 	  			dom=new DOMParser();
 	  			dt=dom.parseFromString(data,"text/html");
