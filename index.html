@@ -38,7 +38,7 @@
 						this.loadPageChache(0);
 					}
 					
-					this.showImage(this.total-1);
+					this.showImage(this.total-1-42);
 					
 				}
 				
@@ -56,6 +56,9 @@
 				{
 					var page=Math.floor(num/this.perPage);
 					var off=num%this.perPage;
+					if(this.pageCache[page]==null)
+						loadPageCache(page);
+					
 					var id=this.pageCache[page][off];
 					
 					var  imgurl="https://gelbooru.com/index.php?page=post&s=view&id="+id;
