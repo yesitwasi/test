@@ -20,10 +20,12 @@
 					this.total=Number(pagestrs[pagestrs.length-1]);
 					this.pageCache=new Array(this.total/this.perPage +1);
 					var lastURL="https://gelbooru.com/index.php?page=post&s=list&tags="+this.tags+"&pid="+this.total;
+						
+						this.loadPageCache(0);
 					loadPage(lastURL);
 					this.total+=Number(dt.getElementsByClassName("thumbnail-container").item(0).children.length);
 					
-					this.loadPageCache(0);
+					
 					this.loadPageCache(this.pageCache.length-1);
 					
 					
