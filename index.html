@@ -44,9 +44,10 @@
 				
 				loadPageCache(page)
 				{
-					this.pageCache[page]=new Array(this.perPage);
 					var container=dt.getElementsByClassName("thumbnail-container").item(0).children;
-					for(var i=0;i<this.perPage;i++)
+					this.pageCache[page]=new Array(container.length);
+					
+					for(var i=0;i<container.length;i++)
 					{
 						this.pageCache[page][i]=container.item(i).children.item(0).id.slice(1);
 					}
