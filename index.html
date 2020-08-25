@@ -2,6 +2,26 @@
 	<head>
 		<script src="jquery.js"></script>
 		<script>
+			class txt
+			{
+				constructor(t)
+				{
+					this.tags=t;
+					this.url="https://gelbooru.com/index.php?page=post&s=list&tags="+this.tags+"&pid=0";
+					loadPage(this.url);
+					
+					this.perPage=dt.getElementsByClassName("thumbnail-container").item(0).childNodes.length;
+					var pages=dt.getElementsByClassName("pagination").item(0).childNodes;
+					if(pages.length>1){
+					var pagestrs=pages.item(pages.length-1).getAttribute("href").split("=");
+					this.total=pagestrs[pagestrs.length-1];
+					var lastURL="https://gelbooru.com/index.php?page=post&s=list&tags="+this.tags+"&pid="+this.total;
+					this.total+=dt.getElementsByClassName("thumbnail-container").item(0).childNodes.length;
+					alert(total);
+					}
+					
+				}
+			}
 			var vals;
 			var list;
 			var button;
@@ -57,19 +77,15 @@
 				removeGUI();
 				var tags=list.childNodes.item(0).childNodes.item(0).value;
 				alert(tags);
-				loadPage("https://gelbooru.com/index.php?page=post&s=list&tags="+tags+"&pid=0");
+				
 				audio = document.createElement("AUDIO");
 				var url1="https://freesound.org/data/previews/26/26777_128404-lq.mp3";
 				audio.setAttribute("src",url1);
 				document.body.appendChild(audio);
 				
-				perPage=dt.getElementsByClassName("thumbnail-container").item(0).childNodes.length;
-				var pages=dt.getElementsByClassName("pagination").item(0).childNodes;
-				if(pages.length>1){
-				var pagestrs=pages.item(pages.length-1).getAttribute("href").split("=");
-				total=pagestrs[pagestrs.length-1];
-				alert(total);
-				}
+				var tt=new txt(tags);
+				
+				
 			}
 			
 		</script>
