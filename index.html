@@ -96,7 +96,9 @@
 			var dt;
 			function loadPage(url)
 			{
-				var f='https://cors-anywhere.herokuapp.com/'+url;
+				var proxy1="https://cors-anywhere.herokuapp.com";
+				var proxy="https://crossorigin.me";
+				var f=proxy+'/'+url;
 								
 				 $.ajax({ url: f, success: function(data) {
 	      	  	  
