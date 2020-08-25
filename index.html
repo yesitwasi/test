@@ -54,7 +54,7 @@
 				}
 				showImage(num)
 				{
-					var page=num/this.perPage;
+					var page=Math.floor(num/this.perPage);
 					var off=num%this.perPage;
 					var id=this.pageCache[page][off];
 					alert(id);
