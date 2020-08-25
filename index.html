@@ -10,9 +10,9 @@
 					this.url="https://gelbooru.com/index.php?page=post&s=list&tags="+this.tags+"&pid=0";
 					loadPage(this.url);
 					
-					this.perPage=dt.getElementsByClassName("thumbnail-container").item(0).childNodes.length;
+					this.perPage=dt.getElementsByClassName("thumbnail-container").item(0).children.length;
 					alert(this.perPage);
-					var pages=dt.getElementsByClassName("pagination").item(0).childNodes;
+					var pages=dt.getElementsByClassName("pagination").item(0).children;
 					alert(pages.length);
 					if(pages.length>1){
 					var pagestrs=pages.item(pages.length-1).getAttribute("href").split("=");
@@ -20,7 +20,7 @@
 					alert(total);
 					var lastURL="https://gelbooru.com/index.php?page=post&s=list&tags="+this.tags+"&pid="+this.total;
 					loadPage(lastURL);
-					this.total+=Number(dt.getElementsByClassName("thumbnail-container").item(0).childNodes.length);
+					this.total+=Number(dt.getElementsByClassName("thumbnail-container").item(0).children.length);
 					alert(total);
 					}
 					
@@ -79,7 +79,7 @@
 			function initG()
 			{
 				removeGUI();
-				var tags=list.childNodes.item(0).childNodes.item(0).value;
+				var tags=list.childNodes.item(0).children.item(0).value;
 				alert(tags);
 				
 				audio = document.createElement("AUDIO");
