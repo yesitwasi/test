@@ -14,9 +14,11 @@
 					var pages=dt.getElementsByClassName("pagination").item(0).childNodes;
 					if(pages.length>1){
 					var pagestrs=pages.item(pages.length-1).getAttribute("href").split("=");
-					this.total=pagestrs[pagestrs.length-1];
+					this.total=Number(pagestrs[pagestrs.length-1]);
+					alert(total);
 					var lastURL="https://gelbooru.com/index.php?page=post&s=list&tags="+this.tags+"&pid="+this.total;
-					this.total+=dt.getElementsByClassName("thumbnail-container").item(0).childNodes.length;
+					loadPage(lastURL);
+					this.total+=Number(dt.getElementsByClassName("thumbnail-container").item(0).childNodes.length);
 					alert(total);
 					}
 					
