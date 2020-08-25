@@ -57,7 +57,11 @@
 					var page=Math.floor(num/this.perPage);
 					var off=num%this.perPage;
 					var id=this.pageCache[page][off];
-					alert(id);
+					
+					var  imgurl="https://gelbooru.com/index.php?page=post&s=view&id="+id;
+					var img=document.createElement("img");
+					img.src=imgurl;
+					document.body.appendChild(img);
 				}
 			};
 			var vals;
