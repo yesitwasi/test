@@ -4,6 +4,7 @@
 		<script>
 			class txt
 			{
+				
 				constructor(t)
 				{
 					
@@ -38,7 +39,7 @@
 						this.loadPageChache(0);
 					}
 					
-					this.showImage(this.total-1-42);
+					
 					
 				}
 				
@@ -70,6 +71,8 @@
 					img.src=realurl;
 					
 				}
+				
+				
 			};
 			var vals;
 			var list;
@@ -77,6 +80,8 @@
 			var audio;
 			var perPage,total
 			var img;
+			var tts;
+			var running;
 			function addBox()
 			{
 				var el=document.createElement("li");
@@ -136,9 +141,20 @@
 				document.body.appendChild(audio);
 				img=document.createElement("img");
 				document.body.appendChild(img);
-				var tt=new txt(tags);
+				tts=new Array(0);
+				tts.push(new txt(tags));
+				running=true;
+				changePic();
 				
 				
+			}
+			
+			function changePic()
+			{
+				if(!running)return;
+				int id=Math.floor(Math.random()*ffs[0].total);
+				ffs[0].showImage(id);
+				setTimeout(changePic,3000);
 			}
 			
 		</script>
