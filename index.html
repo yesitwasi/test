@@ -71,7 +71,7 @@
 					if(isImage!=null){
 						var proxy=["https://crossorigin.me/","https://cors-proxy.htmldriven.com/?url=","https://cors-anywhere.herokuapp.com/"];
 						
-						var realurl=proxy[2]+isImage.children.item(0).children.item(1).src;	
+						var realurl=isImage.children.item(0).children.item(1).src;	
 						
 						var result = null;
      						    var URL = name;
@@ -82,7 +82,7 @@
          					   	async: false,
           						  crossDomain: 'true',
         						    success: function(data, status) {          					   	   
-             					   		img.src='data:image/png;base64,' + data;
+             					   		img.src='data:image/jpg;base64,' + data;
       						      } 
        						  });
 						
