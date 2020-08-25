@@ -82,12 +82,11 @@
          					   	async: false,
           						  crossDomain: 'true',
         						    success: function(data, status) {          					   	   
-             					   
+             					   		img.attr('src', 'data:image/png;base64,' + data);
       						      } 
        						  });
 						
-						img.crossOrigin = "Anonymous";
-						img.src=realurl;
+						
 						return imgTime;
 					}
 					else return 0;
