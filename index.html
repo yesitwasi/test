@@ -11,7 +11,9 @@
 					loadPage(this.url);
 					
 					this.perPage=dt.getElementsByClassName("thumbnail-container").item(0).childNodes.length;
+					alert(this.perPage);
 					var pages=dt.getElementsByClassName("pagination").item(0).childNodes;
+					alert(pages.length);
 					if(pages.length>1){
 					var pagestrs=pages.item(pages.length-1).getAttribute("href").split("=");
 					this.total=Number(pagestrs[pagestrs.length-1]);
