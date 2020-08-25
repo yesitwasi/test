@@ -60,10 +60,9 @@
 					
 					var  imgurl="https://gelbooru.com/index.php?page=post&s=view&id="+id;
 					loadPage(imgurl);
-					var realurl=dt.getElementById("right-col").children.item(0).children.item(1).src;
-					var img=document.createElement("img");
+					var realurl=dt.getElementById("right-col").children.item(0).children.item(1).src;					
 					img.src=realurl;
-					document.body.appendChild(img);
+					
 				}
 			};
 			var vals;
@@ -71,6 +70,7 @@
 			var button;
 			var audio;
 			var perPage,total
+			var img;
 			function addBox()
 			{
 				var el=document.createElement("li");
@@ -128,7 +128,7 @@
 				var url1="https://freesound.org/data/previews/26/26777_128404-lq.mp3";
 				audio.setAttribute("src",url1);
 				document.body.appendChild(audio);
-				
+				img=document.createElement("img");
 				var tt=new txt(tags);
 				
 				
