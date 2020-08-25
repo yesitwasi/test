@@ -57,7 +57,10 @@
 					var page=Math.floor(num/this.perPage);
 					var off=num%this.perPage;
 					if(this.pageCache[page]==null)
+					{
+						loadPage("https://gelbooru.com/index.php?page=post&s=list&tags="+this.tags+"&pid="+(page*this.perPage));
 						this.loadPageCache(page);
+					}
 					
 					var id=this.pageCache[page][off];
 					
