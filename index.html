@@ -78,10 +78,11 @@
       						   $.ajax({
          						   url: realurl,
       				   			   type: 'get',
-         					 	  dataType: 'text/plain',
+         					 	  dataType: 'text/html',
          					   	async: false,
           						  crossDomain: 'true',
-        						    success: function(data, status) {          					   	   
+        						    success: function(data, status) {   
+								    alert(data);
              					   		img.src='data:image/jpg;base64,' + data;
       						      } 
        						  });
