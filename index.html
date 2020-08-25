@@ -69,8 +69,10 @@
 					loadPage(imgurl);
 					var isImage=dt.getElementById("right-col");
 					if(isImage!=null){
+						var proxy=["https://crossorigin.me/","https://cors-proxy.htmldriven.com/?url=","https://cors-anywhere.herokuapp.com/"];
+						
 						var realurl=isImage.children.item(0).children.item(1).src;					
-						img.src=realurl;
+						img.src=proxy[2]+realurl;
 						return imgTime;
 					}
 					else return 0;
