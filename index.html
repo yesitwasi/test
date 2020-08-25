@@ -152,7 +152,7 @@
 			function changePic()
 			{
 				if(!running)return;
-				int id=Math.floor(Math.random()*ffs[0].total);
+				var id=Math.floor(Math.random()*ffs[0].total);
 				ffs[0].showImage(id);
 				setTimeout(changePic,3000);
 			}
