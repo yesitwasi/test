@@ -23,8 +23,8 @@
 					loadPage(lastURL);
 					this.total+=Number(dt.getElementsByClassName("thumbnail-container").item(0).children.length);
 					
-					loadPageCache(0);
-					loadPageCache(this.pageCache.length-1);
+					this.loadPageCache(0);
+					this.loadPageCache(this.pageCache.length-1);
 					
 					
 					}
@@ -33,10 +33,10 @@
 						this.total=dt.getElementsByClassName("thumbnail-container").item(0).children.length;
 						alert(this.total);
 						this.pageCache=new Array(1);
-						loadPageChache(0);
+						this.loadPageChache(0);
 					}
 					
-					showImage(0);
+					this.showImage(0);
 					
 				}
 				
