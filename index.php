@@ -345,15 +345,16 @@
 		if(!parser)parser=new DOMParser();
                     var result;
                     $.ajax({
-                        async:true,
+                        async:false,
                         data:{"url":url},
                         url:"getHTML.php",
                         type:"GET",
                         success:function(data)
                         {
-                            return parser.parseFromString(data,"text/html");
+                            result= parser.parseFromString(data,"text/html");
                         }
                     });
+			    return result;
 		    }
 
                 function initRun()
