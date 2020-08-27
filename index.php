@@ -227,7 +227,7 @@
                     {
                         if(!this.running)return;
 
-                        if(this.readyMedia.length<10)
+                        if(this.readyMedia.length<2)
                         {
 				var url=this.randomSelect1();
 				this.queueMedia(url);
