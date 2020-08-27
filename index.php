@@ -272,7 +272,7 @@
                             {
                                 currentRun.readyMedia.push({"type":"img","img":this,"time":5000});
                             }
-				img.src="data:image/term;base64,"+data;
+				img.src="data:image/"+term+";base64,"+data;
                         }
                         });
 
