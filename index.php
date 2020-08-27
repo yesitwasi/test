@@ -170,6 +170,7 @@
                             this.list.push({"txt":txt,"perPage":perPage,"total":total,"pageCache":pageCache,"num":num});        
 				this.sumNum+=num;
 			    this.sumTotal+=total;
+				
 			}
                         
                         this.running=false;
@@ -177,7 +178,8 @@
 			    
 			this.beep=new Audio("https://freesound.org/data/previews/26/26777_128404-lq.mp3");
 			    
-			    this.beepRate=2;
+			    this.beepRate=0;
+			    this.nextBeep=null;
 
                     }
 
@@ -186,15 +188,37 @@
                         this.running=true;
                         this.queueLoop();
                         this.mediaLoop();
-			    this.beepLoop();
+			    this.beginBeep();
+			    this.eventLoop();
 
                     }
+			eventLoop()
+			{
+				if(!this.running)return;
+				this.stopBeep();
+				var rate=Math.random()*5;
+				this.beginBeep(rate);
+				
+				
+				setTimeout(this.eventLoop.bind(this),10000*Math.random()+2000);
+			}
+			
+			beginBeep(rate)
+			{
+				this.beepRate=rate;
+				this.nextbeep=setTimeout(this.beepLoop.bind(this),1000/this.beepRate);
+				
+			}
+			stopBeep()
+			{
+				clearTimeout(nextBeep);
+			}
 			beepLoop()
 			{
 				 if(!this.running)return;
 				this.beep.play();
 				
-				setTimeout(this.beepLoop.bind(this),1000/this.beepRate);  
+				this.nextbeep=setTimeout(this.beepLoop.bind(this),1000/this.beepRate);
 				
 			}
 			
