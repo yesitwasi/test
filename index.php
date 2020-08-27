@@ -191,7 +191,7 @@
 			beepLoop()
 			{
 				 if(!this.running)return;
-				//this.beep.play();
+				this.beep.play();
 				
 				setTimeout(this.beepLoop.bind(this),1000/this.beepRate);  
 				
