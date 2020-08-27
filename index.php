@@ -342,6 +342,7 @@
                 function initRun()
                 {
                     currentRun=new Run();
+			currentRun.run();
                 }
             </script>
 
