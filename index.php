@@ -187,8 +187,7 @@
                     {
                         this.running=true;
                         this.queueLoop();
-                        this.mediaLoop();
-			    this.beginBeep();
+                        this.mediaLoop();			    
 			    this.eventLoop();
 
                     }
@@ -211,7 +210,9 @@
 			}
 			stopBeep()
 			{
+				if(nextBeep==null)return;
 				clearTimeout(nextBeep);
+				nextBeep=null;
 			}
 			beepLoop()
 			{
