@@ -208,7 +208,7 @@
 					}
 				}
 			
-			randomSelect1()
+			async randomSelect1()
 			{
 				var numc=Math.random()*this.sumNum;
 				var selected=-1;
@@ -226,7 +226,7 @@
 				
 				if(!this.list[selected]["pageCache"][page])
 				{
-					var pageDoc=getHTML("https://gelbooru.com/index.php?page=post&s=list&tags="+this.list[selected]["txt"]+"&pid="+(page*this.list[selected]["perPage"]));
+					var pageDoc= await getHTMLAsync("https://gelbooru.com/index.php?page=post&s=list&tags="+this.list[selected]["txt"]+"&pid="+(page*this.list[selected]["perPage"]));
 					this.loadPageCache(page,pageDoc,selected);
 				}
 				
@@ -236,13 +236,13 @@
 				return imgurl;
 			}
 
-                    queueLoop()
+                    async queueLoop()
                     {
                         if(!this.running)return;
 
                         if(this.readyMedia.length<2)
                         {
-				var url=this.randomSelect1();
+				var url=await this.randomSelect1();
 				this.queueMedia(url);
 
 
@@ -253,9 +253,9 @@
                         setTimeout(this.queueLoop.bind(this),this.queueInterval);                        
                     }
 
-                    queueMedia(url)
+                    async queueMedia(url)
                     {
-				var pageDoc=getHTML(url);
+				var pageDoc=await getHTMLAsync(url);
 				var isImage=pageDoc.getElementById("right-col");
 				
 				if(isImage!=null){
@@ -354,6 +354,25 @@
                         }
                     });
                     return parser.parseFromString(result,"text/html");
+                }
+		    
+		function getHTMLAsync(url,func)
+                {
+			if(!parser)parser=new DOMParser();
+			return new Promise(function(yay,nay){
+                    
+                    
+                    $.ajax({
+                        async:true,
+                        data:{"url":url},
+                        url:"getHTML.php",
+                        type:"GET",
+                        success:function(data)
+                        {
+                            yay(parser.parseFromString(result,"text/html"));
+                        }
+                    });
+			});
                 }
 
                 function initRun()
