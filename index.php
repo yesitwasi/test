@@ -339,21 +339,22 @@
                 }
 
                 var parser;
-                function getHTML(url)
+                function requestHTML(url)
                 {
                     if(!parser)parser=new DOMParser();
                     var result;
                     $.ajax({
-                        async:false,
+                        async:true,
                         data:{"url":url},
                         url:"getHTML.php",
                         type:"GET",
                         success:function(data)
                         {
-                            result=data;
+                            return parser.parseFromString(data,"text/html");
                         }
                     });
-                    return parser.parseFromString(result,"text/html");
+			return null;
+                    
                 }
 
                 function initRun()
@@ -361,6 +362,10 @@
                     currentRun=new Run();
 			currentRun.run();
                 }
+		    async function getHTML()
+		    {
+			    return await requestHTML(url);
+		    }
             </script>
 
 
