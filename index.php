@@ -256,7 +256,7 @@
                     {
                         var id="local://data/data"+this.mediaId;
                         this.mediaId++;
-			    this.mediaId%=this.maxMedia;
+			    this.mediaId%=maxMedia;
                         $.ajax({
                         async:true,
                         data:{"url":url,"id":id},
