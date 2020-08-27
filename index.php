@@ -255,6 +255,8 @@
                     queueImg(url)
                     {
                         var id="/app/tmp/data"+this.mediaId;
+			    var terml=url.split(".");
+			    var term=terml[terml.length-1];
                         this.mediaId++;
 			    this.mediaId%=maxMedia;
                         $.ajax({
@@ -270,7 +272,7 @@
                             {
                                 currentRun.readyMedia.push({"type":"img","img":this,"time":5000});
                             }
-				img.src=data;
+				img.src="data:image/term;base64,"+data;
                         }
                         });
 
