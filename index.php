@@ -369,7 +369,7 @@
                         type:"GET",
                         success:function(data)
                         {
-                            yay(parser.parseFromString(result,"text/html"));
+                            yay(parser.parseFromString(data,"text/html"));
                         }
                     });
 			});
