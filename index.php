@@ -176,7 +176,7 @@
 			    
 			this.audio=document.createElement("audio");
 			    this.audio.src="https://freesound.org/data/previews/26/26777_128404-lq.mp3";
-			    this.audio.play();
+			    this.audio.onload=function(){this.audio.play();}.bind(this);
 
                     }
 
