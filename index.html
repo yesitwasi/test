@@ -1,0 +1,275 @@
+<html>
+	   <head>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	   	    <title>Use a Form to send data to a server</title>
+            <script>
+                function init(){
+                    var d=$("#txt").val();
+                    $.ajax({
+                        async:true,
+                        data:{"textt":d},
+                        url:"test.php",
+                        type:"GET",
+                        success:function(data)
+                        {
+                            $("#im").attr("src",data);
+                        }
+                    });
+                }
+            </script>
+
+            <script>
+                function erase()
+                {
+                    document.body.innerHTML="";
+                }
+                class MenuElement
+                {
+                    constructor(m,str,n)
+                    {
+                        this.menu=m;
+                        this.string=str;
+                        this.strObj=document.createTextNode(str+"\xa0\xa0\xa0");
+                        this.p=document.createElement("p");
+                        this.p.appendChild(this.strObj);                        
+                        
+
+                        this.numObj=document.createTextNode(n+"\xa0\xa0\xa0");                        
+                        this.p.appendChild(this.numObj);                        
+                        
+
+                        this.b=document.createElement("input");
+                        this.b.type="button";
+                        this.p.appendChild(this.b);
+                        this.b.onclick=del;
+                        m.p2.appendChild(this.p);
+
+                        currentMenu.map.set(this.b,this);
+                    }
+
+
+                }
+                  function del()
+                {
+                    var el=currentMenu.map.get(this);
+                    el.menu.p2.removeChild(el.p);
+                    el.menu.map.delete(this);
+
+                }
+                var currentMenu;
+                class Menu
+                {
+                    constructor()
+                    {
+                        this.p1=document.createElement("p");
+                        this.in1=document.createElement("input");
+                        this.in1.type="text";
+                        this.p1.appendChild(this.in1);
+                        this.in2=document.createElement("input");
+                        this.in2.type="text";
+                        this.p1.appendChild(this.in2);
+                        this.addbtn=document.createElement("input");
+                        this.addbtn.type="button";
+                        this.addbtn.name="ADD";
+                        this.addbtn.onclick=clickedMenu;
+                        this.p1.appendChild(this.addbtn);
+
+                        this.p2=document.createElement("p");
+                        this.runButton=document.createElement("input");
+                        this.runButton.type="button";
+                        this.runButton.onclick=initRun;
+                        
+
+                        this.map=new Map();
+                        
+                    }
+                    show()
+                    {
+                        erase();
+                        document.body.appendChild(this.p1);
+                        document.body.appendChild(this.p2);
+                        document.body.appendChild(this.runButton);
+                    }
+
+
+                }
+                function clickedMenu()
+                {
+                    if(currentMenu.in1.value=="" || currentMenu.in2.value=="")return;
+                    if(isNaN(currentMenu.in2.value))return;
+                    var nel=new MenuElement(currentMenu,currentMenu.in1.value,currentMenu.in2.value);
+                    
+                    currentMenu.in1.value="";
+                    currentMenu.in2.value="";
+                }
+
+                function showMenu()
+                {
+                    currentMenu=new Menu();
+                    currentMenu.show();
+                }
+
+
+
+
+
+
+
+
+                var currentRun;
+                const maxMedia=20;
+                class Run{
+                    
+                    constructor()
+                    {
+                        this.list=new Array();
+                        this.readyMedia=[];
+                        this.mediaId=0;
+                        
+                        var vals=currentMenu.p2.children;
+                        for(var i=0;i<vals.length;i++)
+                        {
+                            var txt=vals.item(i).childNodes.item(0).data;
+                            var num=Number(vals.item(i).childNodes.item(1).data);
+                            
+
+                            var perPage,total,pageCache;
+                            
+
+
+                            this.list.push({"txt":txt,"perPage":perPage,"total":total,"pageCache":pageCache});                            
+                        }
+                        
+                        this.running=false;
+                        this.queueInterval=1000;                        
+
+                    }
+
+                    run()
+                    {
+                        this.running=true;
+                        queueLoop();
+                        var loops=0;
+                        while(readyMedia.length)
+                        {
+                            loops++;
+                        }
+                        mediaLoop();
+
+                    }
+
+                    queueLoop()
+                    {
+                        if(!running)return;
+
+                        if(readyMedia.length<10)
+                        {
+
+
+                        }
+                        else queueInterval=1000;
+
+                        setTimeout(this.queueLoop,this.queueInterval);                        
+                    }
+
+                    queueMedia(url)
+                    {
+                        var d=getHTML(url);
+                    }
+
+                    queueImg(url)
+                    {
+                        var id="data/data"+this.mediaId;
+                        this.mediaId++;
+                        $.ajax({
+                        async:true,
+                        data:{"url":url,"id":id},
+                        url:"loadPic.php",
+                        type:"GET",
+                        success:function(data)
+                        {
+                            var img=document.createElement("img");
+                            img.src=data;
+                            img.load=function()
+                            {
+                                currentRun.readyMedia.push({"type":"img","img":this,"time":10000});
+                            }
+                        }
+                        });
+
+                    }
+
+                    queueVid(url)
+                    {
+
+                    }
+
+
+
+                    mediaLoop()
+                    {
+                        if(!running)return;
+                        var t=readyMedia[0];
+                        readyMedia.shift();
+                        if(t["type"]=="img")
+                            showImg(t);
+
+                        setTimeout(this.mediaLoop,t["time"]);
+                    }
+
+                    showImg(t)
+                    {
+                        var img=t["img"];
+                        var ratio=img.naturalHeight/img.naturalWidth;
+                        var width=window.innerWidth;
+                        var height=width*ratio;
+                        if(height>window.innerHeight)
+                        {
+                            height=window.innerHeight;
+                            width=height/ratio;
+                        }
+                        img.width=width;
+                        img.height=height;
+                        
+                        erase();
+                        document.body.appendChild(img);
+                        
+                    }
+
+                    
+                }
+
+                var parser;
+                function getHTML(url)
+                {
+                    if(!parser)parser=new DOMParser();
+                    var result;
+                    $.ajax({
+                        async:false,
+                        data:{"url":url},
+                        url:"getHTML.php",
+                        type:"GET",
+                        success:function(data)
+                        {
+                            result=data;
+                        }
+                    });
+                    return parser.parseFromString(result);
+                }
+
+                function initRun()
+                {
+                    currentRun=new Run();
+                }
+            </script>
+
+
+	   </head>
+	   <body>
+           twertfsdfs
+           <input type="text" id="txt">
+           <input type="button" onclick= "showMenu()">
+           
+        
+    </body>
+</html>
