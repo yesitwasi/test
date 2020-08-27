@@ -148,6 +148,8 @@
 				if(pages.length>1){
 					var pagestrs=pages.item(pages.length-1).getAttribute("href").split("=");
 					total=Number(pagestrs[pagestrs.length-1]);
+					if(total>=20000)
+						total=Math.floor(total/perPage)*perPage;
 					pageCache=new Array(total/perPage +1);
 					var lastURL="https://gelbooru.com/index.php?page=post&s=list&tags="+txt+"&pid="+total;
 						
