@@ -177,8 +177,8 @@
                     run()
                     {
                         this.running=true;
-                        queueLoop();
-                        mediaLoop();
+                        this.queueLoop();
+                        this.mediaLoop();
 
                     }
 			
@@ -227,8 +227,8 @@
 
                         if(this.readyMedia.length<10)
                         {
-				var url=randomSelect1();
-				queueMedia(url);
+				var url=this.randomSelect1();
+				this.queueMedia(url);
 
 
 
@@ -247,7 +247,7 @@
 						
 						
 					var realurl=isImage.children.item(0).children.item(1).src;	
-					queueImg(realurl);
+					this.queueImg(realurl);
 					
 				}
                     }
@@ -256,7 +256,7 @@
                     {
                         var id="data/data"+this.mediaId;
                         this.mediaId++;
-			    this.mediaId%=maxMedia;
+			    this.mediaId%=this.maxMedia;
                         $.ajax({
                         async:true,
                         data:{"url":url,"id":id},
@@ -268,7 +268,7 @@
                             
                             img.onload=function()
                             {
-                                currentRun.readyMedia.push({"type":"img","img":this,"time":10000});
+                                currentRun.readyMedia.push({"type":"img","img":this,"time":5000});
                             }
 				img.src=data;
                         }
