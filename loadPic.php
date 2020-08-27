@@ -1,4 +1,7 @@
 <?php
-file_put_contents($_GET["id"],file_get_contents($_GET["url"]));
-echo file_get_contents($_GET["url"])
+$path = 'myfolder/myimage.png';
+$type = pathinfo($path, PATHINFO_EXTENSION);
+$data = file_get_contents($path);
+$base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
+echo $base64
 ?>
