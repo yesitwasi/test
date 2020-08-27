@@ -125,6 +125,8 @@
                         this.list=new Array();
                         this.readyMedia=[];
                         this.mediaId=0;
+			    this.sumNum=0;
+			    this.sumTotal=0;
                         
                         var vals=currentMenu.p2.children;
                         for(var i=0;i<vals.length;i++)
@@ -134,11 +136,37 @@
                             
 
                             var perPage,total,pageCache;
+				
+				var url="https://gelbooru.com/index.php?page=post&s=list&tags="+txt+"&pid=0";
+				var firstD=getHTML(url);
+					
+				perPage=firstD.getElementsByClassName("thumbnail-container").item(0).children.length;
+					
+				var pages=firstD.getElementsByClassName("pagination").item(0).children;
+					
+				if(pages.length>1){
+					var pagestrs=pages.item(pages.length-1).getAttribute("href").split("=");
+					total=Number(pagestrs[pagestrs.length-1]);
+					pageCache=new Array(total/perPage +1);
+					var lastURL="https://gelbooru.com/index.php?page=post&s=list&tags="+txt+"&pid="+total;
+						
+						
+					var lastD=getHTML(lastURL);
+					total+=Number(lastD.getElementsByClassName("thumbnail-container").item(0).children.length);
+				}
+				else
+				{
+					total=firstD.getElementsByClassName("thumbnail-container").item(0).children.length;						
+					pageCache=new Array(1);						
+					}
+			
                             
 
 
-                            this.list.push({"txt":txt,"perPage":perPage,"total":total,"pageCache":pageCache});                            
-                        }
+                            this.list.push({"txt":txt,"perPage":perPage,"total":total,"pageCache":pageCache,"num":num});        
+				this.sumNum+=num;
+			    this.sumTotal+=total;
+			}
                         
                         this.running=false;
                         this.queueInterval=1000;                        
@@ -149,25 +177,49 @@
                     {
                         this.running=true;
                         queueLoop();
-                        var loops=0;
-                        while(readyMedia.length)
-                        {
-                            loops++;
-                        }
                         mediaLoop();
 
                     }
+			
+			randomSelect1()
+			{
+				var numc=Math.random()*this.sumNum;
+				var selected=-1;
+				for(var i=0;selected==-1;i++)
+				{
+					numc-=this.list[i]["num"];
+					if(numc<0)
+						selected=i;
+				}
+				
+				var idx=Math.floor(Math.random()*this.list[selected]["total"]);
+				
+				var page=Math.floor(idx/this.list[selected]["perPage"]);
+				var off=idx%this.list[selected]["perPage"];
+				
+				if(!this.list[selected]["pageCache"][page])
+				{
+					var pageDoc=getHTML("https://gelbooru.com/index.php?page=post&s=list&tags="+this.list[selected]["txt"]+"&pid="+(page*this.list[selected]["perPage"]));
+					loadPageCache(page,pageDoc,selected);
+				}
+				
+				var id=this.list[selected]["pageCache"][page][off];
+				
+				var  imgurl="https://gelbooru.com/index.php?page=post&s=view&id="+id;
+				return imgurl;
+			}
 
                     queueLoop()
                     {
-                        if(!running)return;
+                        if(!this.running)return;
 
-                        if(readyMedia.length<10)
+                        if(this.readyMedia.length<10)
                         {
+				
 
 
                         }
-                        else queueInterval=1000;
+                        
 
                         setTimeout(this.queueLoop,this.queueInterval);                        
                     }
@@ -254,7 +306,7 @@
                             result=data;
                         }
                     });
-                    return parser.parseFromString(result);
+                    return parser.parseFromString(result,"text/html");
                 }
 
                 function initRun()
