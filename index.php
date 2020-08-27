@@ -254,7 +254,7 @@
 
                     queueImg(url)
                     {
-                        var id="data/data"+this.mediaId;
+                        var id="local://data/data"+this.mediaId;
                         this.mediaId++;
 			    this.mediaId%=this.maxMedia;
                         $.ajax({
