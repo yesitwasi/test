@@ -212,7 +212,7 @@
 				if(!this.list[selected]["pageCache"][page])
 				{
 					var pageDoc=getHTML("https://gelbooru.com/index.php?page=post&s=list&tags="+this.list[selected]["txt"]+"&pid="+(page*this.list[selected]["perPage"]));
-					loadPageCache(page,pageDoc,selected);
+					this.loadPageCache(page,pageDoc,selected);
 				}
 				
 				var id=this.list[selected]["pageCache"][page][off];
