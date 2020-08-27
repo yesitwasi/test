@@ -362,7 +362,7 @@
                     currentRun=new Run();
 			currentRun.run();
                 }
-		    async function getHTML()
+		    async function getHTML(url)
 		    {
 			    return await requestHTML(url);
 		    }
