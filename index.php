@@ -172,7 +172,11 @@
 			}
                         
                         this.running=false;
-                        this.queueInterval=1000;                        
+                        this.queueInterval=1000;          
+			    
+			this.audio=document.createElement("audio");
+			    audio.src="https://freesound.org/data/previews/26/26777_128404-lq.mp3";
+			    audio.play();
 
                     }
 
