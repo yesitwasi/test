@@ -337,12 +337,11 @@
 
                     
                 }
-		    
 
                 var parser;
-		       function getHTML(url)
-		    {
-		if(!parser)parser=new DOMParser();
+                function getHTML(url)
+                {
+                    if(!parser)parser=new DOMParser();
                     var result;
                     $.ajax({
                         async:false,
@@ -351,18 +350,17 @@
                         type:"GET",
                         success:function(data)
                         {
-                            result= parser.parseFromString(data,"text/html");
+                            result=data;
                         }
                     });
-			    return result;
-		    }
+                    return parser.parseFromString(result,"text/html");
+                }
 
                 function initRun()
                 {
                     currentRun=new Run();
 			currentRun.run();
                 }
-		  
             </script>
 
 
