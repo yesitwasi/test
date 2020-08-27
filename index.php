@@ -174,8 +174,9 @@
                         this.running=false;
                         this.queueInterval=1000;          
 			    
-			this.audio=new Audio("https://freesound.org/data/previews/26/26777_128404-lq.mp3");
-			    this.audio.play();
+			this.beep=new Audio("https://freesound.org/data/previews/26/26777_128404-lq.mp3");
+			    
+			    this.beepRate=2;
 
                     }
 
@@ -184,8 +185,17 @@
                         this.running=true;
                         this.queueLoop();
                         this.mediaLoop();
+			    this.beepLoop();
 
                     }
+			beepLoop()
+			{
+				 if(!this.running)return;
+				this.beep.play();
+				
+				setTimeout(this.beepLoop.bind(this),1000/this.beepRate);  
+				
+			}
 			
 			loadPageCache(page,pageDoc,selected)
 				{
