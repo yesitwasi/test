@@ -337,11 +337,12 @@
 
                     
                 }
+		    
 
                 var parser;
-                function requestHTML(url)
-                {
-                    if(!parser)parser=new DOMParser();
+		       function getHTML(url)
+		    {
+		if(!parser)parser=new DOMParser();
                     var result;
                     $.ajax({
                         async:true,
@@ -353,19 +354,14 @@
                             return parser.parseFromString(data,"text/html");
                         }
                     });
-			
-                    
-                }
+		    }
 
                 function initRun()
                 {
                     currentRun=new Run();
 			currentRun.run();
                 }
-		    async function getHTML(url)
-		    {
-			    return await requestHTML(url);
-		    }
+		  
             </script>
 
 
