@@ -174,9 +174,8 @@
                         this.running=false;
                         this.queueInterval=1000;          
 			    
-			this.audio=document.createElement("audio");
-			    this.audio.src="https://freesound.org/data/previews/26/26777_128404-lq.mp3";
-			    this.audio.onload=function(){this.audio.play();}.bind(this);
+			this.audio=new Audio("https://freesound.org/data/previews/26/26777_128404-lq.mp3");
+			    this.audio.play();
 
                     }
 
