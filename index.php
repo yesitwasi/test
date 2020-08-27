@@ -182,6 +182,17 @@
 
                     }
 			
+			loadPageCache(page,pageDoc,selected)
+				{
+					var container=pageDoc.getElementsByClassName("thumbnail-container").item(0).children;
+					this.list[selected]["pageCache"][page]=new Array(container.length);
+					
+					for(var i=0;i<container.length;i++)
+					{
+						this.list[selected]["pageCache"][page][i]=container.item(i).children.item(0).id.slice(1);
+					}
+				}
+			
 			randomSelect1()
 			{
 				var numc=Math.random()*this.sumNum;
@@ -277,7 +288,7 @@
                         if(!this.running)return;
 			 if(this.readyMedia.length==0)
 			{
-				setTimeout(this.mediaLoop.bind(this),t["time"]);  
+				setTimeout(this.mediaLoop.bind(this),1000);  
 				return;
 			}
                         var t=this.readyMedia[0];
