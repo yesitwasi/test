@@ -210,9 +210,9 @@
 			}
 			stopBeep()
 			{
-				if(nextBeep==null)return;
-				clearTimeout(nextBeep);
-				nextBeep=null;
+				if(this.nextBeep==null)return;
+				clearTimeout(this.nextBeep);
+				this.nextBeep=null;
 			}
 			beepLoop()
 			{
