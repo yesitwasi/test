@@ -406,6 +406,24 @@
                     currentRun=new Run();
 			currentRun.run();
                 }
+		    
+		    
+		    
+		    
+		    
+		    function dbquery(str)
+		    {
+			    $.ajax({
+                        async:false,
+                        data:{"query":str},
+                        url:"db.php",
+                        type:"GET",
+                        success:function(data)
+                        {
+                            alert(data);
+                        }
+                    });
+		    }
             </script>
 
 
