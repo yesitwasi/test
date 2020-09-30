@@ -27,10 +27,5 @@ if (!$result) {
   exit();
 }
 
-while(TRUE)
-{
-  $res=pg_fetch_result($result,1);
-  if(!$res)break;
-  echo $res;
-}
+
 ?>
