@@ -422,6 +422,10 @@
                         {
                             alert(data);
                         }
+				    error:funciont(aa,bb,cc)
+				    {
+				    alert(bb);
+			    }
                     });
 		    }
             </script>
