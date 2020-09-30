@@ -14,15 +14,7 @@ if (!$conn) {
 
 
 $query=$_GET["query"];
-$result=pg_query ($conn,  $query )
+$result=pg_query ($conn,  $query );
   
-  
-
-while(TRUE)
-{
-  $res=pg_fetch_result($result,1);
-  if(!$res)break;
-  echo $res;
-}
 
 ?>
