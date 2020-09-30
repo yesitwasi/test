@@ -422,7 +422,7 @@
                         {
                             alert(data);
                         }
-				    error:funciont(aa,bb,cc)
+				    error:function(aa,bb,cc)
 				    {
 				    alert(bb);
 			    }
