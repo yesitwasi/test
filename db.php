@@ -1,14 +1,11 @@
 <?php
-echo getenv("DATABASE_URL") . "\n";
-exit("testexit");
-$db = parse_url(getenv("DATABASE_URL"));
 
-$db["path"] = ltrim($db["path"], "/");
+
 
 $conn = pg_connect(getenv("DATABASE_URL"));
 if (!$conn) {
   echo "An error occurred.No conenction\n";
-  echo getenv("DATABASE_URL");
+  echo getenv("DATABASE_URL") . "\n";
   exit("connection");
 }
 
@@ -22,16 +19,16 @@ $result=pg_query ($conn,  $query );
   Query:" . $query . "
   
   Error:
-  " .  pg_result_error ( $result );
+  " .  pg_result_error ( $result ) . "\n";
  
-  exit();
+  exit("result");
 }
 
 while(TRUE)
 {
   $res=pg_fetch_result($result,1);
   if(!$res)break;
-  echo $res;
+  echo $res . "\n";
 }
 
 ?>
