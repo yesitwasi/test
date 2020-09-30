@@ -1,5 +1,5 @@
 <?php
-echo "asdasdsa\n";
+echo getenv("DATABASE_URL") . "\n";
 exit("testexit");
 $db = parse_url(getenv("DATABASE_URL"));
 
