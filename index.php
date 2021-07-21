@@ -144,7 +144,7 @@
 					
 				perPage=firstD.getElementsByClassName("thumbnail-container").item(0).children.length;
 					
-				var pages=firstD.getElementsByClassName("pagination").item(0).children;
+				var pages=firstD.getElementsByClassName("pagination").item(0).children.item(0).children;
 					
 				if(pages.length>1){
 					var pagestrs=pages.item(pages.length-1).getAttribute("href").split("=");
